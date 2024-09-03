@@ -14,10 +14,8 @@
 </head>
 <body>
 	<%
-	// jsp -> 서블릿으로 변환되어서 실행
-	// memberList.jsp -> memberList_jsp.java -> memberList_jsp.class 실행.
 	MemberService svc = new MemberServiceImpl();
-	List<MemberVO> list = svc.getMembers(); //(List<MemberVO>) request.getAttribute("memberList");//
+	List<MemberVO> list = svc.getMembers();
 	%>
 
 	<h3>회원목록</h3>

@@ -10,15 +10,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import com.yedam.common.Control;
-import com.yedam.control.AddFormControl;
-import com.yedam.control.AddMemberControl;
-import com.yedam.control.GetMemberControl;
 import com.yedam.control.IntroControl;
 import com.yedam.control.MainControl;
-import com.yedam.control.MemberListControl;
-import com.yedam.control.ModFormControl;
-import com.yedam.control.ModifyMemberControl;
 import com.yedam.control.SubControl;
 
 
@@ -39,15 +34,14 @@ public class FrontController extends HttpServlet {
 	public void init(ServletConfig cofig) throws ServletException {
 		map.put("/main.do", new MainControl());
 		map.put("/sub.do", new SubControl());
+		map.put("/intro.do", new IntroControl());
 		
-		//기능등록
-		map.put("/addForm.do", new AddFormControl()); //회원등록페이지;
-		map.put("/addMember.do", new AddMemberControl()); //회원등록처리.
-		map.put("/memberList.do", new MemberListControl());
-		map.put("/getMember.do", new GetMemberControl()); // 회원아이디를 기준으로 상세조회.
-		map.put("/modifyForm.do", new ModFormControl());// 수정화면 호출
-		map.put("/modifyMember.do", new ModifyMemberControl()); //수정처리
-//		map.put("/intro.do", new  IntroControl());
+		
+		Map<String, Control> memberMenu = MenuMember.getInstance().menuMap();
+		Map<String, Control> boardMenu = MenuBoard.getInstance().menuMap();
+		
+		map.putAll(memberMenu);
+		map.putAll(boardMenu);
 	}
 
 	//HttpServletRequest
