@@ -9,6 +9,7 @@ import com.yedam.control.AddMemberControl;
 import com.yedam.control.GetMemberControl;
 import com.yedam.control.LoginControl;
 import com.yedam.control.LoginFormControl;
+import com.yedam.control.LogoutControl;
 import com.yedam.control.MemberListControl;
 import com.yedam.control.ModFormControl;
 import com.yedam.control.ModifyMemberControl;
@@ -37,7 +38,7 @@ public class MenuMember {
 		//로그인 관련
 		menu.put("/loginForm.do", new LoginFormControl());
 		menu.put("/login.do", new LoginControl());
-		
+		menu.put("/logout.do", new LogoutControl());
 		return menu;
 	}
 }

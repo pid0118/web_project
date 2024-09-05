@@ -7,6 +7,21 @@ import com.yedam.vo.BoardVO;
 public class AppTest2 {
 
 	public static void main(String[] args) {
+		SearchDTO search = new SearchDTO();
+		search.setSearchCondition("W");
+		search.setKeyword("user01");
+		search.setPage(1);
+		
+		
+//		//목록
+		BoardService svc = new BoardServiceImpl();
+		
+		
+//		svc.removeBoard(3);
+		svc.boardList(search).forEach(System.out::println);
+//		System.out.println(svc.getBoard(board.getBoardNo()));
+//		
+//		svc.boardList().forEach(System.out::println); //board -> System.out.println(board) 전체목록 조회
 		
 //		SqlSessionFactory factory = DateSource.getInstance();
 //		SqlSession session = factory.openSession();
@@ -22,13 +37,6 @@ public class AppTest2 {
 //		board.setWriter("Lim");
 //		board.setBoardNo(3);
 //		
-//		//목록
-//		BoardService svc = new BoardServiceImpl();
-//		svc.removeBoard(3);
-//		svc.boardList().forEach(System.out::println);
-//		System.out.println(svc.getBoard(board.getBoardNo()));
-//		
-//		svc.boardList().forEach(System.out::println); //board -> System.out.println(board) 전체목록 조회
 		
 		
 		
