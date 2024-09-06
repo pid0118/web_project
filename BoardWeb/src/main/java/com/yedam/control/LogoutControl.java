@@ -17,7 +17,7 @@ public class LogoutControl implements Control {
 		HttpSession session = request.getSession();
 		session.invalidate();
 		
-		response.sendRedirect("loginForm.do");
+		response.sendRedirect("html/loginForm.tiles");
 
 	}
 

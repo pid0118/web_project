@@ -29,10 +29,10 @@ public class ModifyMemberControl implements Control {
 		
 		MemberService svc = new MemberServiceImpl();
 		if (svc.modifyMember(mvo)) {
-			response.sendRedirect("memberList.do");
+			response.sendRedirect("damin/memberList.tiles");
 		} else {
 			request.setAttribute("massage", "수정중에 오류가 있습니다.");
-			request.getRequestDispatcher("WEB-INF/html/modifyForm.jsp").forward(request, response);
+			request.getRequestDispatcher("html/modifyForm.tiles").forward(request, response);
 		
 	}
 

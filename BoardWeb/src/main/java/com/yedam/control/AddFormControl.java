@@ -14,7 +14,7 @@ public class AddFormControl implements Control {
 	public void exec(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// addForm.do 요청 ->  요청재지정(WEB-INF/html/addForm.jsp)
 		
-		request.getRequestDispatcher("WEB-INF/html/addForm.jsp")
+		request.getRequestDispatcher("html/addForm.tiles")
 				.forward(request, response);
 		
 		

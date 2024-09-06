@@ -28,10 +28,10 @@ public class ModifyBoardControl implements Control {
 	
 		BoardService svc = new BoardServiceImpl();
 		if (svc.modifyBoard(mvo)) {
-			response.sendRedirect("boardList.do");
+			response.sendRedirect("board/boardList.tiles");
 		} else {
 			request.setAttribute("massage", "수정중에 오류가 있습니다.");
-			request.getRequestDispatcher("WEB-INF/html/modifyBoardForm.jsp").forward(request, response);
+			request.getRequestDispatcher("html/modifyBoardForm.tiles").forward(request, response);
 		}
 		
 		

@@ -3,7 +3,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-<jsp:include page="../includes/header.jsp"></jsp:include>
 <h3>글 상세 페이지</h3>
 <p>searchCondition: ${sc }, keyword: ${kw }</p>
 
@@ -47,6 +46,7 @@
 
 
 </table>
+
 <form action="removeBoard.do" name="actForm">
 	<input type="hidden" name="keyword" value="${kw }">
 	<input type="hidden" name="searchCondition" value="${sc }">
@@ -68,9 +68,8 @@
 	function form_submit(uri){
 		document.forms.actForm.action = uri;
 		document.forms.actForm.submit();
-		document.forms.actForm.
+		
 	}
 </script>
 
 
-<jsp:include page="../includes/footer.jsp"></jsp:include>

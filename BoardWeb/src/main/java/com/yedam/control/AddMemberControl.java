@@ -40,7 +40,7 @@ public class AddMemberControl implements Control {
 			response.sendRedirect("memberList.do");
 		} else {
 			request.setAttribute("massage", "등록중에 오류가 있습니다.");
-			request.getRequestDispatcher("WEB-INF/html/addForm.jsp").forward(request, response);
+			request.getRequestDispatcher("html/addForm.tiles").forward(request, response);
 		}
 
 	}

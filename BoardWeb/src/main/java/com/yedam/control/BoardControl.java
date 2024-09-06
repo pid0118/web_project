@@ -33,7 +33,7 @@ public class BoardControl implements Control {
 		//카운트 증가
 		
 		
-		RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/board/board.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("board/board.tiles");
 		rd.forward(request, response);
 		
 		

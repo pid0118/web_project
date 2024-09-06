@@ -19,9 +19,9 @@ public class RemoveMemberControl implements Control {
 		
 		MemberService svc = new MemberServiceImpl();
 		if(svc.removeMember(id)) {
-			response.sendRedirect("memberList.do");
+			response.sendRedirect("html/memberList.tiles");
 		}else {
-			request.getRequestDispatcher("WEB-INF/html/removeMember.do.jsp").forward(request, response);
+			request.getRequestDispatcher("html/removeMember.tiles").forward(request, response);
 		}
 		
 		

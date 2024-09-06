@@ -43,7 +43,7 @@ public class AddBoardControl implements Control {
 		BoardService svc = new BoardServiceImpl();
 		svc.addBoard(board);
 		
-		response.sendRedirect("boardList.do");
+		response.sendRedirect("board/boardList.tiles");
 		
 		
 	}

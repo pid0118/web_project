@@ -24,7 +24,7 @@ public class ModFormControl implements Control {
 				
 				request.setAttribute("memberInfo", mvo);
 				
-				request.getRequestDispatcher("WEB-INF/html/modifyForm.jsp").forward(request, response);
+				request.getRequestDispatcher("html/modifyForm.tiles").forward(request, response);
 		
 	}
 

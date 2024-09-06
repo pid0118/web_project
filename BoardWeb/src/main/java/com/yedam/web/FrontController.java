@@ -6,13 +6,13 @@ import java.util.Map;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.yedam.common.Control;
 import com.yedam.control.IntroControl;
+import com.yedam.control.JavascriptControl;
 import com.yedam.control.MainControl;
 import com.yedam.control.SubControl;
 
@@ -35,7 +35,7 @@ public class FrontController extends HttpServlet {
 		map.put("/main.do", new MainControl());
 		map.put("/sub.do", new SubControl());
 		map.put("/intro.do", new IntroControl());
-		
+		map.put("/javascript.do", new JavascriptControl());
 		
 		Map<String, Control> memberMenu = MenuMember.getInstance().menuMap();
 		Map<String, Control> boardMenu = MenuBoard.getInstance().menuMap();
