@@ -17,7 +17,7 @@ import com.yedam.control.MainControl;
 import com.yedam.control.SubControl;
 
 
-@WebServlet("*.do")
+//@WebServlet("*.do")
 
 public class FrontController extends HttpServlet {
 	
