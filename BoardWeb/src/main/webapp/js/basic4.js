@@ -14,3 +14,7 @@ let result = data.filter(function(item, idx, ary){
 	}
 });
 console.log(result);
+//검색결과 이벤트
+/*Document.getElementById('searchBtn').addEventListener('click', function(e){
+	let 
+});*/
