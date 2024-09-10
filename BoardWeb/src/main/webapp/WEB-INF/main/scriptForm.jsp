@@ -74,5 +74,6 @@
 
 </table>
 
-<script src="js/reply.js"></script>
-<!--<script src="js/basic4.js"></script>-->
+<script src="js/replyService.js"></script>
+<script src="js/replyBoard.js"></script>
+<!--  <script src="js/fetch.js"></script>  -->

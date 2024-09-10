@@ -2,7 +2,17 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
+<style>
+	div.reply div {
+		margin: auto;
+	}
+	div.reply ul{
+		list.style-type: nene;
+	}
+	div.reply span{
+		display: inline-block;
+	}
+</style>
 <h3>글 상세 페이지</h3>
 <p>searchCondition: ${sc }, keyword: ${kw }</p>
 
@@ -61,9 +71,47 @@
 			<span style="color: red">${message }</span>
 		</c:if>
 
+<!-- 댓글관련 -->
+<div class="container reply">
+	<!-- 댓글등록 -->
+	<div class="header">
+		<input type="text" id="reply" class="col-sm-8">
+		<button id="addReply" class="btn btn-primary">댓글등록</button>
+	</div>
+	
+	<!-- 댓글목록 -->
+	<div class="content">
+	 <ul>
+	 	<li>
+	 		<span class="col-sm-2">글번호</span>
+	 		<span class="col-sm-5">댓글내용</span>
+	 		<span class="col-sm-2">작성자</span>
+	 		<span class="col-sm-2">삭제</span>
+	 	</li>
+	 	<li >
+	 		<hr />
+	 	</li>
+	 	<li id="template" style="displaynone">
+	 		<span class="col-sm-2">24</span>
+	 		<span class="col-sm-5">테스입니다</span>
+	 		<span class="col-sm-2">user01</span>
+	 		<span class="col-sm-2"><button class="btn btn-danger">삭제</button></span>
+	 	</li>
+	 </ul>
+	</div> 
+	 
+	
+<!-- 댓글페이징 -->
+
+
+</div>
+
+
 </div>
 
 <script>
+	const bno = '${board.boardNo }'; //원글번호.
+	const writer = '${logid}';		 //로그인 정보.
 	// 매개값으로 이동할 컨트롤을 받아서 파라미터를 전달.
 	function form_submit(uri){
 		document.forms.actForm.action = uri;
@@ -72,4 +120,6 @@
 	}
 </script>
 
-
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="js/replyService.js"></script>
+<script src="js/replyBoard.js"></script>

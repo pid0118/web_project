@@ -8,7 +8,7 @@ let bno = 148;
 const xhtp = new XMLHttpRequest(); //객체생성
 xhtp.open('get', 'replyList.do?bno=148'); //서버 페이지 지정.
 xhtp.send(); //서버 요청
-xhtp.onload =  function(){
+xhtp.onload = function() {
 	console.log(xhtp.responseText);
 	let result = JSON.parse(xhtp.responseText); //json -> 객체
 	console.log(result);
@@ -16,20 +16,20 @@ xhtp.onload =  function(){
 		document.querySelector('.list').appendChild(makeRow(reply));
 	});
 }
-	function makeRow(reply = {}){
+function makeRow(reply = {}) {
 	let tr = document.createElement('tr');
 
-let fields = ['replyNo', 'reply', 'replyer', 'replyDate'];
-// 댓글정보 -> tr>td*4 생성 반환하는 함수
+	let fields = ['replyNo', 'reply', 'replyer', 'replyDate'];
+	// 댓글정보 -> tr>td*4 생성 반환하는 함수
 	// 체크박스 생성
-			let btn = document.createElement('input'); // <button>삭제</button>
-	 		btn.setAttribute('type', 'checkbox');
-	 
-	 
-			let td = document.createElement('td');  // <td><button>삭제</button></td>
-			td.appendChild(btn);
-			tr.appendChild(td); // <tr>td.....<td><button>삭제</button></td></tr>
-			
+	let btn = document.createElement('input'); // <button>삭제</button>
+	btn.setAttribute('type', 'checkbox');
+
+
+	let td = document.createElement('td');  // <td><button>삭제</button></td>
+	td.appendChild(btn);
+	tr.appendChild(td); // <tr>td.....<td><button>삭제</button></td></tr>
+
 
 	// td생성
 	fields.forEach(field => {
@@ -38,37 +38,37 @@ let fields = ['replyNo', 'reply', 'replyer', 'replyDate'];
 		tr.appendChild(td);
 	})
 	//삭제버튼
-	 
-		btn = document.createElement('button'); // <button>삭제</button>
-			btn.innerHTML = '삭제';
-			btn.addEventListener('click', deleteRowFnc);
-			td = document.createElement('td');  // <td><button>삭제</button></td>
-			td.appendChild(btn);
-			tr.appendChild(td); // <tr>td.....<td><button>삭제</button></td></tr> 
-			
+
+	btn = document.createElement('button'); // <button>삭제</button>
+	btn.innerHTML = '삭제';
+	btn.addEventListener('click', deleteRowFnc);
+	td = document.createElement('td');  // <td><button>삭제</button></td>
+	td.appendChild(btn);
+	tr.appendChild(td); // <tr>td.....<td><button>삭제</button></td></tr> 
+
 	return tr;
 }
 
 //삭제를 처리할 함수.
-function deleteRowFnc(e){
-		console.log(e.target.parentElement.parentElement.firstChild.innerHTML);
-		let rno = e.target.parentElement.parentElement.firstChild.innerHTML;
-		console.log(e.target.parentElement.parentElement.children[1].innerHTML);
-		rno = e.target.parentElement.parentElement.children[1].innerHTML;
-		
-		const delHtp = new XMLHttpRequest();
-		delHtp.open('get', 'removeReply.do?rno=' + rno); //컨트롤 지정
-		delHtp.send();
-		delHtp.onload = function(){
-			let result = JSON.parse(delHtp.responseText);
-			if(result.retCode == 'OK'){
-					e.target.parentElement.parentElement.remove();
-			}else if(result.retCode == 'NG'){
-				alert('알수 없는 예외 발생');
-			}else{
-				alert('잘못된 반환코드 입니다...');
-			}
+function deleteRowFnc(e) {
+	console.log(e.target.parentElement.parentElement.firstChild.innerHTML);
+	let rno = e.target.parentElement.parentElement.firstChild.innerHTML;
+	console.log(e.target.parentElement.parentElement.children[1].innerHTML);
+	rno = e.target.parentElement.parentElement.children[1].innerHTML;
+
+	const delHtp = new XMLHttpRequest();
+	delHtp.open('get', 'removeReply.do?rno=' + rno); //컨트롤 지정
+	delHtp.send();
+	delHtp.onload = function() {
+		let result = JSON.parse(delHtp.responseText);
+		if (result.retCode == 'OK') {
+			e.target.parentElement.parentElement.remove();
+		} else if (result.retCode == 'NG') {
+			alert('알수 없는 예외 발생');
+		} else {
+			alert('잘못된 반환코드 입니다...');
 		}
+	}
 }
 
 // 전체선택 체크박스 이벤트
@@ -82,51 +82,51 @@ document.querySelector('thead input[type="checkbox"]').addEventListener('change'
 document.querySelector('#delChecked').addEventListener('click', delCheckedFnc);
 
 //선택삭제함수 실행.
-function delCheckedFnc1(e){
+function delCheckedFnc1(e) {
 	// ?rno=21&rno=22&rno=23
 	let params = "";
 	document.querySelectorAll('.list input[type="checkbox"]:checked').forEach(item => {
 		let rno = item.parentElement.nextElementSibling.innerHTML;
 		params += "rno" + rno + ",&rno";
 	})
-	
+
 	const delHtp = new XMLHttpRequest();
 	delHtp.open('get', "removeReplys.do?" + params);
-	delHtp.onload = function(){
+	delHtp.onload = function() {
 		let result = JSON.parse(delHtp.responseText);
-		
-		if(result.retCode == 'OK'){
-			
+
+		if (result.retCode == 'OK') {
+
 			// 화면상에 체크된 input 을 삭제
-		}else{
+		} else {
 			alert("처리중 예외발생");
 		}
 	}
-	
+
 }
 
 //선택삭제함수 반복실행
-function delCheckedFnc(e){
+function delCheckedFnc(e) {
 	document.querySelectorAll('.list input[type="checkbox"]:checked').forEach(item => {
-	
-	let rno = item.parentElement.nextElementSibling.innerHTML;
-	
-	const delHtp = new XMLHttpRequest();
+
+		let rno = item.parentElement.nextElementSibling.innerHTML;
+
+		const delHtp = new XMLHttpRequest();
 		delHtp.open('get', 'removeReply.do?rno=' + rno); //컨트롤 지정
 		delHtp.send();
-		delHtp.onload = function(){
+		delHtp.onload = function() {
 			let result = JSON.parse(delHtp.responseText);
-			if(result.retCode == 'OK'){
-					item.parentElement.parentElement.remove();
-			}else if(result.retCode == 'NG'){
+			if (result.retCode == 'OK') {
+				item.parentElement.parentElement.remove();
+			} else if (result.retCode == 'NG') {
 				alert('알수 없는 예외 발생');
-			}else{
+			} else {
 				alert('잘못된 반환코드 입니다...');
 			}
-		}	
-			
+		}
+
 	})
-	
+
 };
 // 댓글등록처리
 document.querySelector('#addReply').addEventListener('click', function() {
@@ -135,15 +135,19 @@ document.querySelector('#addReply').addEventListener('click', function() {
 	addHtp.open('get', 'addReply.do?bno=' + bno + '&reply=' + reply + '&replyer=' + replyer);
 	addHtp.send();
 	addHtp.onload = function() {
-		let result = JSON.parse(addHtp.responseText);
+		let result = JSON.parse(addHtp.responseText); //컨트롤 반환해주는 정보 json문자열
 		console.log(result); // retCode, retVal=>{}
-		let tr = makeRow(result.retVal);
-		document.querySelector('.list').appendChild(tr);
+		if (result.retCode == 'OK') {
+			let tr = makeRow(result.retVal);
+			document.querySelector('.list').appendChild(tr);
+		} else {
+			alert('처리중 예외');
+		}
 
 	}
-})
+});
 
 
 
 
- 
+
