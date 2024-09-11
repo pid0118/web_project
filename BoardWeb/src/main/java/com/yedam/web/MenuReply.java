@@ -7,7 +7,9 @@ import com.yedam.common.Control;
 import com.yedam.control.AddReplyControl;
 import com.yedam.control.RemoveReplyControl;
 import com.yedam.control.RemoveReplysControl;
+import com.yedam.control.ReplyCountControl;
 import com.yedam.control.ReplyListControl;
+import com.yedam.control.ReplyTableControl;
 
 public class MenuReply {
 	private static MenuReply instance = new MenuReply();
@@ -28,6 +30,11 @@ public class MenuReply {
 		menu.put("/removeReplys.do", new RemoveReplysControl());
 		//등록 컨트롤
 		menu.put("/addReply.do", new AddReplyControl());
+		//댓글 건수컨트롤
+		menu.put("/replyCount.do", new ReplyCountControl());
+		
+		// 댓글작성 dataTable용
+		menu.put("/replyTable.do", new ReplyTableControl());
 		
 		return menu;
 	}

@@ -95,25 +95,40 @@
 	</div>
 	
 	<!-- 댓글목록 -->
-		<table id="example" class="display" style="width: 100%">
-			<thead>
-				<tr>
-					<th>댓글번호</th>
-					<th>내용</th>
-					<th>작성자</th>
-					<th>작성일시</th>
-				</tr>
-			</thead>
-			<tfoot>
-				<tr>
-					<th>댓글번호</th>
-					<th>내용</th>
-					<th>작성자</th>
-					<th>작성일시</th>
-				</tr>
-			</tfoot>
-		</table>
-		<!-- 댓글페이징 -->
+	<div class="content">
+	 <ul>
+	 	<li>
+	 		<span class="col-sm-2">글번호</span>
+	 		<span class="col-sm-5">댓글내용</span>
+	 		<span class="col-sm-2">작성자</span>
+	 		<span class="col-sm-2">삭제</span>
+	 	</li>
+	 	<li >
+	 		<hr />
+	 	</li>
+	 	<li id="template" style="displaynone">
+	 		<span class="col-sm-2">24</span>
+	 		<span class="col-sm-5">테스입니다</span>
+	 		<span class="col-sm-2">user01</span>
+	 		<span class="col-sm-2"><button class="btn btn-danger">삭제</button></span>
+	 	</li>
+	 </ul>
+	</div> 
+	
+<!-- 댓글페이징 -->
+		<nav aria-label="Page navigation example">
+			<ul class="pagination justify-content-center">
+				<li class="page-item disabled active" aria-current="page" >
+					<a class="page-link">Previous</a>
+				</li>
+				<li class="page-item"><a class="page-link" href="#">1</a></li>
+				<li class="page-item"><a class="page-link" href="#">2</a></li>
+				<li class="page-item"><a class="page-link" href="#">3</a></li>
+				<li class="page-item">
+					<a class="page-link" href="#">Next</a>
+				</li>
+			</ul>
+		</nav>
 
 	</div>
 
@@ -121,13 +136,13 @@
 </div>
 
 <script>
+
 	// 매개값으로 이동할 컨트롤을 받아서 파라미터를 전달.
-	function form_submit(uri) {
+	function form_submit(uri){
 		document.forms.actForm.action = uri;
 		document.forms.actForm.submit();
-
+		
 	}
 </script>
 
 
-<script src="js/boardTable.js"></script>
