@@ -56,4 +56,23 @@
   	where board_no = #{bno}
   </select>
 
+  <select id="selectEvent" useCache="false" resultType="map">
+  	select title "title"
+  		  ,start_date	"start"
+  		  ,end_date	"end"
+  	from tbl_calendar
+  </select>
+  
+  <insert id="insertEvent" parameterType="com.yedam.common.SearchDTO">
+  	insert into tbl_calendar values(#{title}, #{start}, #{end})
+  </insert>
+
+  <delete id="deleteEvent" parameterType="com.yedam.common.SearchDTO">
+  	delete from tbl_calendar
+  	where title = #{title}
+  	and   start_date = #{start}
+  	and   end_date = #{end}
+  </delete>
+
+
 </mapper>

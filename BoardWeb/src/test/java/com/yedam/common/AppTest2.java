@@ -1,20 +1,26 @@
 package com.yedam.common;
 
-import com.yedam.service.BoardService;
-import com.yedam.service.BoardServiceImpl;
-import com.yedam.vo.BoardVO;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.ibatis.session.SqlSession;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.yedam.mapper.ReplyMapper;
 
 public class AppTest2 {
 
 	public static void main(String[] args) {
+		SqlSession sqlSession = DateSource.getInstance().openSession(true);
+		ReplyMapper mapper = sqlSession.getMapper(ReplyMapper.class);
+		List<Map<String, Object>> list = mapper.selectEvent();
 		
+		Gson gson = new GsonBuilder().setPrettyPrinting().create();
+		String json = gson.toJson(list);
+		System.out.println(json);
 		
-		SearchDTO search = new SearchDTO();
-		search.setBoardNo(147);
-		search.setPage(1);
-		
-//		mapper.selectListPaging(search)//
-//				.forEach(reply -> System.out.print(reply.toString()));
+	
 		
 
 //		
