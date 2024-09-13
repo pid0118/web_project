@@ -16,13 +16,21 @@ import com.yedam.common.SearchDTO;
 import com.yedam.service.ReplyService;
 import com.yedam.service.ReplyServiceImpl;
 
+/*
+ * "/eventList.do
+ * 
+ * 
+ * 
+ * */
+
 public class EventControl implements Control {
-	
+
 	ReplyService svc = new ReplyServiceImpl();
+
 	@Override
 	public void exec(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/json;charset=utf-8");
-		
+
 		String uri = request.getRequestURI();
 		String context = request.getContextPath();
 		String page = uri.substring(context.length());
@@ -43,11 +51,10 @@ public class EventControl implements Control {
 
 	} // end class
 
-
 	public void eventList(HttpServletRequest request, HttpServletResponse response) {
 		ReplyService svc = new ReplyServiceImpl();
 		List<Map<String, Object>> list = svc.eventList();
-		
+
 		Gson gson = new GsonBuilder().setPrettyPrinting().create();
 		String json = gson.toJson(list);
 		try {
@@ -61,49 +68,70 @@ public class EventControl implements Control {
 		String title = request.getParameter("title");
 		String start = request.getParameter("start");
 		String end = request.getParameter("end");
-		
+
 		SearchDTO event = new SearchDTO();
 		event.setTitle(title);
 		event.setStart(start);
 		event.setEnd(end);
-		
+
 		try {
-			if(svc.addEvent(event)) {
-				//{"retCode": "OK"}
+			if (svc.addEvent(event)) {
+				// {"retCode": "OK"}
 				response.getWriter().print("{\"retCode\": \"OK\"}");
-			}else {
+			} else {
 				response.getWriter().print("{\"retCode\": \"NG\"}");
 			}
-		} 
-		catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		
+
 	}
 
 	public void removeEvent(HttpServletRequest request, HttpServletResponse response) {
 		String title = request.getParameter("title");
 		String start = request.getParameter("start");
 		String end = request.getParameter("end");
-		
+
 		SearchDTO event = new SearchDTO();
 		event.setTitle(title);
 		event.setStart(start);
 		event.setEnd(end);
-		
+
 		try {
-			if(svc.removeEvent(event)) {
-				//{"retCode": "OK"}
+			if (svc.removeEvent(event)) {
+				// {"retCode": "OK"}
 				response.getWriter().print("{\"retCode\": \"OK\"}");
-			}else {
+			} else {
 				response.getWriter().print("{\"retCode\": \"NG\"}");
 			}
-		} 
-		catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
-	
+
+	// chart 의 json 데이터.
+	public void chart(HttpServletRequest request, HttpServletResponse response) {
+
+		List<Map<String, Object>> list = svc.countPerWriter();
+		Gson gson = new GsonBuilder().setPrettyPrinting().create();
+		String json = gson.toJson(list);
+
+		try {
+			response.getWriter().println(json);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	// chart의 페이지 호출.
+	public void showChart(HttpServletRequest request, HttpServletResponse response) {
+		try {
+			request.getRequestDispatcher("admin/chart.tiles").forward(request, response);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
 }

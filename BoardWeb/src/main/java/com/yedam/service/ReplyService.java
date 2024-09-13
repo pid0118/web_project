@@ -21,4 +21,9 @@ public interface ReplyService {
 	boolean addEvent(SearchDTO event);
 	boolean removeEvent(SearchDTO event);
 	
+	//todo관련
+	
+	//chart 관련
+	List<Map<String, Object>> countPerWriter();
+	
 }

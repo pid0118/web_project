@@ -14,7 +14,7 @@ public class AppTest2 {
 	public static void main(String[] args) {
 		SqlSession sqlSession = DateSource.getInstance().openSession(true);
 		ReplyMapper mapper = sqlSession.getMapper(ReplyMapper.class);
-		List<Map<String, Object>> list = mapper.selectEvent();
+		List<Map<String, Object>> list = mapper.countPerWriter();
 		
 		Gson gson = new GsonBuilder().setPrettyPrinting().create();
 		String json = gson.toJson(list);

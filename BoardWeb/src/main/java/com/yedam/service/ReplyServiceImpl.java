@@ -58,4 +58,10 @@ public class ReplyServiceImpl implements ReplyService {
 		return mapper.deleteEvent(event) == 1;
 	}
 	
+	@Override
+	public List<Map<String, Object>> countPerWriter() {
+		// TODO Auto-generated method stub
+		return mapper.countPerWriter();
+	}
+	
 }
